@@ -76,6 +76,8 @@ As shown from the snippet bellow, you can use `init-only setted` properties in o
     }
 ```
 
+**Usecases**: Initialization becomes (a lot) easier to reason, if you do not have to worry about something changed **ever**.
+
 ---
 
 ### Pattern matching enhancements
@@ -105,6 +107,8 @@ The following patterns were added:
     }
 ```
 
+**Usecases**: Every step we take towards Haskell syntax, we should be happy. Basically, more readability and conciseness.
+
 ---
 
 ### Less boilerplate on `new()`
@@ -127,16 +131,21 @@ Now you can omit the type on the right of a `new`, if it can easily deduced by R
     }
 ```
 
+**Usecases**: Conciseness, less boilerplate.
+
 ---
 
 ## Dotnet 6
 
 #### Hot Reload
 
+Instantly apply changes to a running application, without the need to rebuild everything. Also applies to the `dotnet watch` cli command (not applicable to UI weak boys)
 
 This also applies to `ASP.NET Core 6`, as well as some other web functionalities that do not really apply to our services, since we do not exactly use them as web apps but more like ETL pipelines. 
 
 Check a look [here for ASP.NET Core 6](https://docs.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-6.0?view=aspnetcore-6.0).
+
+**Usecases**: Faster development time, less waiting time for Visual Studio to do its work.
 
 ---
 
@@ -146,7 +155,9 @@ Filestream, as the dotnet team says *verbatim* is:
 
 `File I/O is better, stronger, faster!`
 
-The main change is that it never blocks on asyncronous calls **on Windows**, so asyncronity is more performant.
+The main change is that it never blocks on asyncronous calls **on Windows**, so asynchronicity is more performant.
+
+**Usecases**: performance.
 
 ---
 

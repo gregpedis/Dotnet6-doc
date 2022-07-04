@@ -105,4 +105,27 @@ The following patterns were added:
     }
 ```
 
+---
+
+### Less boilerplate on `new()`
+
+Now you can omit the type on the right of a `new`, if it can easily deduced by Roslyn. Observe:
+
+```csharp
+    public class Car { } 
+
+    public class Playground
+    {
+        public int Foo(Car car) => 42;
+
+        public void Bar()
+        {
+            Car car = new(); // same as new Car(), deduced by the type left of the = operator.
+
+            Foo(new()); // same as Foo(new Car()), deduced by Foo's signature;
+        }
+    }
+```
+
+
 

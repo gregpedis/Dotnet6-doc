@@ -13,8 +13,6 @@ It will be split in the following chapters:
 
 ## Dotnet 5
 
----
-
 ### Single-file deployment + executable [(msdn)](https://docs.microsoft.com/en-us/dotnet/core/deploying/single-file/overview?tabs=cli)
 
 Using the following 2 flags on the `.csproj`, we can achieve a **true** single fie deployment, not that 3.1 weak stuff:
@@ -46,5 +44,36 @@ Nothing much to not here, LINQ is faster since they moved sorting algorithms fro
 
 **Usecases**: speed, memory.
 
+---
+
+## C# 9
+
+### Records
+
+TODO
+
+---
+
+### Init-only setters
+
+As shown from the snippet bellow, you can use `init-only setted` properties in order to prevent a property changing it's value after construction + initialization has ended:
+
+```csharp
+    public record Car(int MaxSpeed); // same applies to records, structs and classes.
+
+    public class Playground 
+    {
+        public static void DoWork()
+        {
+            var myCar = new Car(MaxSpeed: 42);
+
+            myCar.MaxSpeed = 69; // Error! CS8852.
+
+            var otherCar = myCar with { MaxSpeed = 43 }; // this is allowed
+
+            otherCar.MaxSpeed = 69; // Error! CS8852.
+        }
+    }
+```
 
 

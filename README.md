@@ -200,6 +200,13 @@ Console.WriteLine(t2);     // "2:30 AM"  notice no date, and we crossed midnight
 
 #### PriorityQueue
 
+The new PriorityQueue<TElement,TPriority> class represents a collection of items that have both a value and a priority. 
+
+Items are dequeued in increasing priority order—that is, the item with the lowest priority value is dequeued first. 
+
+This class implements a [min heap](https://en.wikipedia.org/wiki/Binary_heap) data structure.
+
+**Usecases**: Queue with priority, while having O(logn) worst-case, amortized insert and peeks/pops.
 
 ---
 

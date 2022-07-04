@@ -94,7 +94,7 @@ The following patterns were added:
 
         public static bool CheckNullability(object? obj) => obj is not null; // instead of obj != null;
 
-        // also works on switch expressions
+        // also works on switch expressions.
         public static int DoWork(int inputValue) =>
             inputValue switch
             {

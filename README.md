@@ -194,6 +194,7 @@ TimeOnly t2 = t1.AddHours(10);
 Console.WriteLine(t2);     // "2:30 AM"  notice no date, and we crossed midnight
 ```
 
+**Usecases**: More purposeful semantics when declaring temporal variables.
 
 ---
 

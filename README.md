@@ -30,9 +30,21 @@ The main difference from `dotnet3.1` is that when a user runs your single file a
 
 ---
 
-### Optimizations  [(devblog)]([https://docs.microsoft.com/en-us/dotnet/core/deploying/single-file/overview?tabs=cli](https://devblogs.microsoft.com/dotnet/performance-improvements-in-net-5/))
+### Runtime Optimizations  [(devblog)](https://devblogs.microsoft.com/dotnet/performance-improvements-in-net-5/)
 
 Nothing much to note here, a lot of stuff are faster, use less memory, are more secure and generally implemented in a smarter fashion. Especially GC and RyuJIT. 
 Read more in the devblog if you are curious.
 
 **Usecases**: speed, memory, security.
+
+--- 
+
+### LINQ Optimizations [(devblog)](https://devblogs.microsoft.com/dotnet/performance-improvements-in-net-5/#linq)
+
+Nothing much to not here, LINQ is faster since they moved sorting algorithms from the CoreCLR layer to Managed Code.
+`OrderBy`, sometimes `SkipLast` and some `IEnumerator` performance changes.
+
+**Usecases**: speed, memory.
+
+
+

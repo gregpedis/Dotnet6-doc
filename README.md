@@ -165,7 +165,7 @@ The main change is that it never blocks on asyncronous calls **on Windows**, so 
 
 Shiny, new types for explicitly only date and explicitly only time instances.
 
-DateOnly snippet:
+`DateOnly` snippet:
 
 ```csharp
 // Construction and properties
@@ -180,7 +180,7 @@ DateOnly d2 = d1.AddMonths(1);  // You can add days, months, or years. Use negat
 Console.WriteLine(d2);     // "6/30/2021"  notice no time
 ```
 
-TimeOnly snippet:
+`TimeOnly` snippet:
 
 ```csharp
 // Construction and properties
@@ -330,4 +330,4 @@ TODO
 - System.Text.Json [Better performance and stuff](https://devblogs.microsoft.com/dotnet/performance-improvements-in-net-5/#json)
 - Generic Math [Experimental, haskell stuff, equally cool and useless](https://devblogs.microsoft.com/dotnet/preview-features-in-net-6-generic-math/)
 - Top level statements [Maybe useful for Program.cs](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9#top-level-statements)
-- Immutability [Kinda random, but really good article about deciding on the optimal collection](https://docs.microsoft.com/en-us/archive/msdn-magazine/2017/march/net-framework-immutable-collections)
+- Immutability [Really good article about deciding on the optimal collection](https://docs.microsoft.com/en-us/archive/msdn-magazine/2017/march/net-framework-immutable-collections)

@@ -157,11 +157,42 @@ Filestream, as the dotnet team says *verbatim* is:
 
 The main change is that it never blocks on asyncronous calls **on Windows**, so asynchronicity is more performant.
 
-**Usecases**: performance.
+**Usecases**: Performance.
 
 ---
 
-#### DateOnly, TimeOnly
+#### DateOnly, TimeOnly [(devblog)](https://devblogs.microsoft.com/dotnet/date-time-and-time-zone-enhancements-in-net-6/)
+
+Shiny, new types for explicitly only date and explicitly only time instances.
+
+DateOnly snippet:
+
+```csharp
+// Construction and properties
+DateOnly d1 = new DateOnly(2021, 5, 31);
+Console.WriteLine(d1.Year);      // 2021
+Console.WriteLine(d1.Month);     // 5
+Console.WriteLine(d1.Day);       // 31
+Console.WriteLine(d1.DayOfWeek); // Monday
+
+// Manipulation
+DateOnly d2 = d1.AddMonths(1);  // You can add days, months, or years. Use negative values to subtract.
+Console.WriteLine(d2);     // "6/30/2021"  notice no time
+```
+
+TimeOnly snippet:
+
+```csharp
+// Construction and properties
+TimeOnly t1 = new TimeOnly(16, 30);
+Console.WriteLine(t1.Hour);      // 16
+Console.WriteLine(t1.Minute);    // 30
+Console.WriteLine(t1.Second);    // 0
+
+// You can add hours, minutes, or a TimeSpan (using negative values to subtract).
+TimeOnly t2 = t1.AddHours(10);
+Console.WriteLine(t2);     // "2:30 AM"  notice no date, and we crossed midnight
+```
 
 
 ---

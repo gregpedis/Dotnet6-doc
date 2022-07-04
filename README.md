@@ -328,6 +328,6 @@ TODO
 - Dotnet 5 [Trimming/Member Trimming](https://devblogs.microsoft.com/dotnet/app-trimming-in-net-5/)
 - Even more [Trimming/Member Trimming](https://docs.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained)
 - System.Text.Json [Better performance and stuff](https://devblogs.microsoft.com/dotnet/performance-improvements-in-net-5/#json)
-- Generic Math [Experimental, haskell stuff, equally cool and useless]([https://devblogs.microsoft.com/dotnet/preview-features-in-net-6-generic-math/])
+- Generic Math [Experimental, haskell stuff, equally cool and useless](https://devblogs.microsoft.com/dotnet/preview-features-in-net-6-generic-math/)
 - Top level statements [Maybe useful for Program.cs](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9#top-level-statements)
 - Immutability [Really good article about deciding on the optimal collection](https://docs.microsoft.com/en-us/archive/msdn-magazine/2017/march/net-framework-immutable-collections)

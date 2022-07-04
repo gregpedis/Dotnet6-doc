@@ -13,6 +13,8 @@ It will be split in the following chapters:
 
 ## Dotnet 5
 
+---
+
 ### Single-file deployment + executable [(msdn)](https://docs.microsoft.com/en-us/dotnet/core/deploying/single-file/overview?tabs=cli)
 
 Using the following 2 flags on the `.csproj`, we can achieve a **true** single fie deployment, not that 3.1 weak stuff:
@@ -26,3 +28,11 @@ The main difference from `dotnet3.1` is that when a user runs your single file a
 
 **Usecases**: easier deployment, less space used.
 
+---
+
+### Optimizations  [(devblog)]([https://docs.microsoft.com/en-us/dotnet/core/deploying/single-file/overview?tabs=cli](https://devblogs.microsoft.com/dotnet/performance-improvements-in-net-5/))
+
+Nothing much to note here, a lot of stuff are faster, use less memory, are more secure and generally implemented in a smarter fashion. Especially GC and RyuJIT. 
+Read more in the devblog if you are curious.
+
+**Usecases**: speed, memory, security.

@@ -404,10 +404,36 @@ if (c?.GetDependentValue(out object obj) ?? false)
 
 ### `CallerArgumentExpression` Attribute
 
-TODO
+This is a new CompilerServices attribute, most likely to be used for diagnostics. 
+You specify a parameter in a method signature and then another parameter that has the `CallerArgumentExpression` attribute with the first parameter's name. 
+For example:
+
+```csharp
+public static void ValidateArgument(string parameterName, bool condition, [CallerArgumentExpression("condition")] string? message=null)
+{
+    if (!condition)
+    {
+        throw new ArgumentException($"Argument failed validation: <{message}>", parameterName);
+    }
+}
+```
+
+You can invoke is as follows:
+
+```csharp
+public void Operation(Action func)
+{
+    Utilities.ValidateArgument(nameof(func), func is not null);
+    func();
+}
+```
+The expression used for condition is injected by the compiler into the message argument. When a developer calls Operation with a null argument, the following message is stored in the ArgumentException:
+
+```md
+Argument failed validation: <func is not null>
+```
 
 ---
-
 
 ## Further Notes for Absolute Nerds
 

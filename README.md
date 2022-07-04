@@ -127,5 +127,41 @@ Now you can omit the type on the right of a `new`, if it can easily deduced by R
     }
 ```
 
+---
 
+## Dotnet 6
+
+#### Hot Reload
+
+
+This also applies to `ASP.NET Core 6`, as well as some other web functionalities that do not really apply to our services, since we do not exactly use them as web apps but more like ETL pipelines. 
+
+Check a look [here for ASP.NET Core 6](https://docs.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-6.0?view=aspnetcore-6.0).
+
+---
+
+#### FileStream Performance [(devblog)](https://devblogs.microsoft.com/dotnet/file-io-improvements-in-dotnet-6/)
+
+Filestream, as the dotnet team says *verbatim* is:
+
+`File I/O is better, stronger, faster!`
+
+The main change is that it never blocks on asyncronous calls **on Windows**, so asyncronity is more performant.
+
+---
+
+#### DateOnly, TimeOnly
+
+
+---
+
+#### PriorityQueue
+
+
+---
+
+#### LINQ Extensions
+
+
+---
 

@@ -264,7 +264,13 @@ Dotnet 6 added a LOT of new LINQ extension methods. Observe:
 
 ### Global `using`
 
-TODO
+You can now add the `global` keyword on a using statement, to include that namespace to all the source files to be included in the compilation. 
+
+```csharp
+using System.Linq;
+```
+
+**Usecases**: Maybe useful for something like LINQ.
 
 ---
 
@@ -276,43 +282,123 @@ TODO
 
 ### Extended `with` functionality
 
-TODO
+You can now use the `with` initialization pattern with `anonymous`, `struct` and `record struct` types. Observe:
+
+```csharp
+public struct Car_Struct { public int Speed { get; init; } };
+public record struct Car_Record_Struct(int Speed);
+
+public class Playground
+{
+    public void Foo()
+    {
+        var carStruct= new Car_Struct{ Speed = 42 };
+        var carRecordStruct = new Car_Record_Struct(42);
+        var carAnonymous = new { Speed = 42 };
+
+        var carStructWith = carStruct with { Speed = 69 };          // not allowed before.
+        var carRecordWith = carRecordStruct with { Speed = 69 };    // not allowed before.
+        var carAnonymousWith = carAnonymous with { Speed = 69 };    // not allowed before.
+    }
+}
+```
+
+**Usecases**: Easier object construction, consistent use of the `with` keyword.
 
 ---
 
 ### File-scoped namespace declaration 
 
-TODO
+You can now file-scope a namespace, instead of curly-braces-scope. 
+
+This basicaly eliminates a pair of curly braces and moves the code one tab to the left. Observe:
+
+```csharp
+namespace OldPlayground 
+{ 
+    // stuff
+}
+
+namespace NewPlayground;
+// stuff
+```
+
+**Note**: If you use a file-scoped namespace, you cannot have any other namespaces in the same file.
+
+**Usecases**: One less pair of curly braces, some horizontal space gained.
 
 ---
 
 ### Property pattern-matching syntactic sugar 
 
-TODO
+Minor change to make pattern-matching on properties better. Observe:
+
+```csharp
+{ Prop1: { Prop2: pattern } }   // old way
+{ Prop1.Prop2: pattern }        // new way
+```
+
+**Usecases**: One less pair of curly braces, some horizontal space gained, readability.
 
 ---
 
-### Roslyn lambda expression inference
+### Lambda expression improvements 
 
-TODO
+Roslyn became smarter as far as reasoning about lambdas goes. Specifically, two things were added:
+
+- Natural type  
+
+```csharp
+Func<int, bool> notInfered = x => x == 42; // old way, have to explicit explain the lambda's type to Roslyn.
+var infered = (int x) => x == 42; // new way, Roslyn infers lambda's "natural" type to be Func<int,bool>.
+```
+
+- In-lining return type, if inferring it is not possible
+
+```csharp
+Func<bool, object> oldWay = b => b ? 1 : "forty-two"; // specify the type explicitly.
+var newWay = object (bool b) => b ? 1 : "forty-two"; //  in-line the return type in front of the lambda expression.
+```
 
 ---
 
 ### Constant string interpolation
 
-TODO
+You can now use string interpolation on constant strings if **every** placeholder is also a constant string. Example:
+
+```csharp
+const string STRING_A = "the meaning of life";
+const string STRING_B = "42";
+const string STRING_INTERPOLATED = $"{STRING_A} is {STRING_B}"; // used to be not allowed.
+```
 
 ---
 
-### Deconstruction readability
+### Null-check inference
 
-TODO
+Roslyn became smarter as far as infering nullability inside a check goes. 
 
----
+All of the following examples used to show up as null warnings/errors. Now they don't.
 
-### Roslyn null-check inference
+```csharp
+string representation = "N/A";
+if ((c != null && c.GetDependentValue(out object obj)) == true)
+{
+   representation = obj.ToString(); // undesired warning/error
+}
 
-TODO
+// Or, using ?.
+if (c?.GetDependentValue(out object obj) == true)
+{
+   representation = obj.ToString(); // undesired warning/error
+}
+
+// Or, using ??
+if (c?.GetDependentValue(out object obj) ?? false)
+{
+   representation = obj.ToString(); // undesired warning/error
+}
+```
 
 ---
 

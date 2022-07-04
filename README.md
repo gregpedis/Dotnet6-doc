@@ -39,7 +39,7 @@ Read more in the devblog if you are curious.
 
 ### LINQ Optimizations [(devblog)](https://devblogs.microsoft.com/dotnet/performance-improvements-in-net-5/#linq)
 
-Nothing much to not here, LINQ is faster since they moved sorting algorithms from the CoreCLR layer to Managed Code.
+Nothing much to see here, LINQ is faster since they moved sorting algorithms from the CoreCLR layer to Managed Code.
 `OrderBy`, sometimes `SkipLast` and some `IEnumerator` performance changes.
 
 **Usecases**: speed, memory.
@@ -137,7 +137,7 @@ Now you can omit the type on the right of a `new`, if it can easily deduced by R
 
 ## Dotnet 6
 
-#### Hot Reload
+### Hot Reload
 
 Instantly apply changes to a running application, without the need to rebuild everything. Also applies to the `dotnet watch` cli command (not applicable to UI weak boys)
 
@@ -149,7 +149,7 @@ Check a look [here for ASP.NET Core 6](https://docs.microsoft.com/en-us/aspnet/c
 
 ---
 
-#### FileStream Performance [(devblog)](https://devblogs.microsoft.com/dotnet/file-io-improvements-in-dotnet-6/)
+### FileStream Performance [(devblog)](https://devblogs.microsoft.com/dotnet/file-io-improvements-in-dotnet-6/)
 
 Filestream, as the dotnet team says *verbatim* is:
 
@@ -161,7 +161,7 @@ The main change is that it never blocks on asyncronous calls **on Windows**, so 
 
 ---
 
-#### DateOnly, TimeOnly [(devblog)](https://devblogs.microsoft.com/dotnet/date-time-and-time-zone-enhancements-in-net-6/)
+### DateOnly, TimeOnly [(devblog)](https://devblogs.microsoft.com/dotnet/date-time-and-time-zone-enhancements-in-net-6/)
 
 Shiny, new types for explicitly only date and explicitly only time instances.
 
@@ -198,7 +198,7 @@ Console.WriteLine(t2);     // "2:30 AM"  notice no date, and we crossed midnight
 
 ---
 
-#### PriorityQueue
+### PriorityQueue
 
 The new `PriorityQueue<TElement,TPriority>` class represents a collection of items that have both a value and a priority. 
 
@@ -206,12 +206,57 @@ Items are dequeued in increasing priority order—that is, the item with the low
 
 This class implements a [min heap](https://en.wikipedia.org/wiki/Binary_heap) data structure.
 
-**Usecases**: Queue with priority, while having O(logn) worst-case, amortized insert and peeks/pops.
+**Usecases**: Queue with priority, having O(logn) worst-case, amortized inserts and peeks/pops.
 
 ---
 
-#### LINQ Extensions
+### LINQ Extensions
 
+Dotnet 6 added a LOT of new LINQ extension methods. Observe:
+
+```csharp
+    public class Playground
+    {
+        public void Bar()
+        {
+            IEnumerable<int> numbers = new List<int> { 1, 2, 3, 42, -100 };
+            IEnumerable<Car> cars = new List<Car> { new Car(1), new Car(42), new Car(2) };
+
+            // gets the count if and only if no enumeration is needed.
+            var succeeded = numbers.TryGetNonEnumeratedCount(out int howMany);
+
+            // Splits the list into arrays, resulting in: [1,2],[3,42],[-100]
+            var chunked = numbers.Chunk(2);
+
+            // returns a CAR (not the speed!) with the maximum speed, here "Car { Speed = 42 }"
+            var maxBySpeed = cars.MaxBy(car => car.Speed);
+            // returns a CAR (not the speed!) with the minimum speed, here "Car { Speed = 1 }"
+            var minBySpeed = cars.MinBy(car => car.Speed);
+
+            // allowed indexes counted from the end, returns 42
+            // allowed indexes counted from the end, returns 42
+            var found = numbers.ElementAt(^2);
+            var foundOrDefault = numbers.ElementAtOrDefault(^2);
+
+            // allows default value specification, returns 42. Same applies to LastOrDefault/SingleOrDefault.
+            var defaulted = new List<int>().FirstOrDefault(number => number % 2 == 0, defaultValue: 42);
+
+            // allows specifying a comparer, returns the MAX car by the default comparer.
+            var maxValue = cars.Max(Comparer<Car>.Default);
+            // allows specifying a comparer, returns the MIN car by the default comparer.
+            var minValue = cars.Min(Comparer<Car>.Default);
+
+            // allows range-syntax, same as numbers.Take(3).Skip(1), returns [2,3]
+            var take3Skip1 = numbers.Take(1..3);
+
+            // allows THREE enumerables to be zipped to one, returns {[1,1,1],[2,2,2],[3,3,3]}
+            var smallList = new List<int> { 1, 2, 3 };
+            var tripleZipped = smallList.Zip(smallList, smallList);
+        }
+    }
+```
+
+**Usecases**: You really have to ask? You would be homeless without LINQ.
 
 ---
 

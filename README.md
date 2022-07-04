@@ -200,7 +200,7 @@ Console.WriteLine(t2);     // "2:30 AM"  notice no date, and we crossed midnight
 
 #### PriorityQueue
 
-The new PriorityQueue<TElement,TPriority> class represents a collection of items that have both a value and a priority. 
+The new `PriorityQueue<TElement,TPriority>` class represents a collection of items that have both a value and a priority. 
 
 Items are dequeued in increasing priority order—that is, the item with the lowest priority value is dequeued first. 
 

@@ -234,8 +234,8 @@ Dotnet 6 added a LOT of new LINQ extension methods. Observe:
             var minBySpeed = cars.MinBy(car => car.Speed);
 
             // allowed indexes counted from the end, returns 42
-            // allowed indexes counted from the end, returns 42
             var found = numbers.ElementAt(^2);
+            // allowed indexes counted from the end, returns 42
             var foundOrDefault = numbers.ElementAtOrDefault(^2);
 
             // allows default value specification, returns 42. Same applies to LastOrDefault/SingleOrDefault.
@@ -260,3 +260,74 @@ Dotnet 6 added a LOT of new LINQ extension methods. Observe:
 
 ---
 
+## C# 10
+
+### Global `using`
+
+TODO
+
+---
+
+### Record structs 
+
+TODO
+
+---
+
+### Extended `with` functionality
+
+TODO
+
+---
+
+### File-scoped namespace declaration 
+
+TODO
+
+---
+
+### Property pattern-matching syntactic sugar 
+
+TODO
+
+---
+
+### Roslyn lambda expression inference
+
+TODO
+
+---
+
+### Constant string interpolation
+
+TODO
+
+---
+
+### Deconstruction readability
+
+TODO
+
+---
+
+### Roslyn null-check inference
+
+TODO
+
+---
+
+### `CallerArgumentExpression` Attribute
+
+TODO
+
+---
+
+
+## Further Notes for Absolute Nerds
+
+- Dotnet 5 [Trimming/Member Trimming](https://devblogs.microsoft.com/dotnet/app-trimming-in-net-5/)
+- Even more [Trimming/Member Trimming](https://docs.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained)
+- System.Text.Json [Better performance and stuff](https://devblogs.microsoft.com/dotnet/performance-improvements-in-net-5/#json)
+- Generic Math [Experimental, haskell stuff, equally cool and useless]([https://devblogs.microsoft.com/dotnet/preview-features-in-net-6-generic-math/])
+- Top level statements [Maybe useful for Program.cs](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9#top-level-statements)
+- Immutability [Really good article about deciding on the optimal collection](https://docs.microsoft.com/en-us/archive/msdn-magazine/2017/march/net-framework-immutable-collections)

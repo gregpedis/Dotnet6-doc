@@ -76,4 +76,33 @@ As shown from the snippet bellow, you can use `init-only setted` properties in o
     }
 ```
 
+---
+
+### Pattern matching enhancements
+
+The following patterns were added:
+
+```csharp
+    public class Playground
+    {
+        public static bool CheckSomething(char c) =>
+            c is
+            >= 'a'      // multi-clause starts here.
+            and < 'd'   // and
+            or '5'      // or
+            and not '4'; // not
+
+        public static bool CheckNullability(object? obj) => obj is not null; // instead of obj != null;
+
+        // also works on switch expressions
+        public static int DoWork(int inputValue) =>
+            inputValue switch
+            {
+                > 42 or 0 => 42,
+                42 or < 0 => -42,
+                _ => throw new Exception()
+            };
+    }
+```
+
 
